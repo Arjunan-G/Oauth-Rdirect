@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Code</title>
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/npm/@freshworks/crayons@v4/dist/crayons/crayons.esm.js"
+    ></script>
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@freshworks/crayons@v4/dist/crayons/crayons.js"
+    ></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #code {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f4f4f4;
+            display: inline-block;
+            margin: 20px 0;
+            word-wrap: break-word;
+            max-width: 80%;
+            box-shadow: 10px 10px 10px red;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 20px 40px;
+            font-size: 26px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        body{
+            background: url('https://images.unsplash.com/photo-1598842377738-7aa01579d317?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            top: -40px;
+            left: -40px;
+            z-index: -1;
+            filter: blur(0px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            color: #f4f4f4;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <fw-toast id="type_toast" position="top-right"></fw-toast>
+    <h1>OAuth Code Copy</h1>
+    <p id="code">Fetching code...</p>
+    <button onclick="copyCode()">Copy Code</button>
+
+    <script>
+        function getCodeFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("code") || "No code found";
+        }
+
+        function copyCode() {
+            const codeText = document.getElementById("code").innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                document.querySelector('#type_toast').trigger({type:'success', content: 'Successfully CODE copied.'})
+            }).catch(err => {
+                console.error("Failed to copy code: ", err);
+            });
+        }
+
+        document.getElementById("code").innerText = getCodeFromUrl();
+    </script>
+</body>
+</html>
