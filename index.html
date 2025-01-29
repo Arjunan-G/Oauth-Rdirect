@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copy Code</title>
     <link rel="icon" type="image/x-icon" href="./image/arbaan_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/@freshworks/crayons@v4/dist/crayons/crayons.esm.js"
@@ -14,11 +17,6 @@
         src="https://cdn.jsdelivr.net/npm/@freshworks/crayons@v4/dist/crayons/crayons.js"
     ></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
         #code {
             padding: 10px;
             border: 1px solid #ccc;
@@ -27,24 +25,43 @@
             margin: 20px 0;
             word-wrap: break-word;
             max-width: 80%;
-            box-shadow: 10px 10px 10px red;
+            box-shadow: 10px 10px 10px #bcb1ab;
             border-radius: 10px;
+            color: #171717;
+            font-weight: 400;
+        }
+        #code:hover{
+            background: #e78712;
+            color: #f4f4f4;
+            cursor: pointer;
         }
         button {
             margin-top: 20px;
-            padding: 20px 40px;
+            padding: 15px 30px;
             font-size: 26px;
             cursor: pointer;
-            background: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
+            background: #e78712;
+            box-shadow: 5px 5px 5px #bcb1ab;
+
         }
         button:hover {
-            background: #0056b3;
+            background: #bcb1ab;
+            box-shadow: 10px 10px 10px #e78712;
         }
         body{
-            background: url('https://images.unsplash.com/photo-1598842377738-7aa01579d317?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            font-family: "Poppins", serif;
+            font-weight: 100;
+            font-style: normal;
+            text-align: center;
+            margin: 50px;
+            /* background: url('https://images.unsplash.com/photo-1598842377738-7aa01579d317?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover; */
+            background-image: url(./image/arbaan-logo.png);
+            background-size: 60% 50%;
+            height: 100%;
+            background-position:bottom;
             background-repeat: no-repeat;
             background-attachment: fixed;
             top: -40px;
@@ -55,35 +72,43 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: #171717;
         }
         h1{
-            color: #f4f4f4;
-            font-size: 50px;
+            color: #e78712;
+            font-size: 60px;
         }
     </style>
 </head>
 <body>
     <fw-toast id="type_toast" position="top-right"></fw-toast>
-    <h1>OAuth Code Copy</h1>
-    <p id="code">Fetching code...</p>
-    <button onclick="copyCode()">Copy Code</button>
+    <h1>Authorization code</h1>
+    <div id="code">Fetching code...</div>
+    <button onclick="copyCode()">
+        <fw-icon name="copy" size=20 color="#f4f4f4" ></fw-icon>
+        Copy Code
+    </button>
 
     <script>
         function getCodeFromUrl() {
             const params = new URLSearchParams(window.location.search);
-            return params.get("code") || "No code found";
+            return params.get("code") || "eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiYmJkYmJmODItODNkZi00ZmFiLWEyYTYtN2U5NmIwNGFkNzlmIn0.AQoAAAABAAYABwAAJK6kbEDdSAgAALA07GxA3UgCALqF5XmX9vZEkhb2W7qCJ1UVAAQAAAAYAAMAAAAFAAAACgAAAB0AAAANACQAAAA3NWQ3MDAyMy0wODhkLTQ4OWEtOWZhMS01OWVjMGQ4N2I3OTMiACQAAAA3NWQ3MDAyMy0wODhkLTQ4OWEtOWZhMS01OWVjMGQ4N2I3OTNFAEBL1DnsxhNSopHPniIAoOEwAIBVxcJnQN1I.UCzlDrs8zHev0K22ezmGBc9mM02cNsIk7SipPAqyCUZ_mW-WpNKtj2mV1gpjkwI28NR_Ti0bFRUw6k8ba0Peo1AtFXFatwFEUsekQJzA3bg7NPpT8djgdoBrSCGL45cAEPy9Smq5rt5sy0gsemGNMXG9nM1amGrWUQuyxMWt_Xmf6PY9diTGP4hn7F9dKJYTCsNkWm9a7EwwNlzAY2TD-mR2PNrBUV-G0o1ZRmVVTaFXpq1RN0LfjpOo9_eLBSIkSCyNLZqbdVGa90or_2xNm8S1vWj4BdSCuTgvyy5n_ABpDiUEWrCrgIWNyk0TmfN4IMaKCSYjdvo4NhxrruirZA";
         }
 
         function copyCode() {
             const codeText = document.getElementById("code").innerText;
             navigator.clipboard.writeText(codeText).then(() => {
-                document.querySelector('#type_toast').trigger({type:'success', content: 'Successfully CODE copied.'})
+                document.querySelector('#type_toast').trigger({type:'success', content: 'Successfully Authorization Code Copied.'})
             }).catch(err => {
                 console.error("Failed to copy code: ", err);
             });
         }
 
         document.getElementById("code").innerText = getCodeFromUrl();
+        const divCode = document.getElementById('code');
+        divCode.addEventListener('click',function(){
+            copyCode()
+        })
     </script>
 </body>
 </html>
