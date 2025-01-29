@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy Code</title>
+    <title>Get-Code</title>
     <link rel="icon" type="image/x-icon" href="./image/arbaan_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
         #code {
             padding: 10px;
             border: 1px solid #ccc;
-            background: #f4f4f4;
+            background: #d5d6de;
             display: inline-block;
             margin: 20px 0;
             word-wrap: break-word;
@@ -31,12 +31,11 @@
             font-weight: 400;
         }
         #code:hover{
-            background: #e78712;
-            color: #f4f4f4;
+            box-shadow: 10px 10px 10px #e78712;
             cursor: pointer;
         }
         button {
-            margin-top: 20px;
+            margin-bottom: 20px;
             padding: 15px 30px;
             font-size: 26px;
             cursor: pointer;
@@ -45,7 +44,6 @@
             border-radius: 5px;
             background: #e78712;
             box-shadow: 5px 5px 5px #bcb1ab;
-
         }
         button:hover {
             background: #bcb1ab;
@@ -77,22 +75,23 @@
         h1{
             color: #e78712;
             font-size: 60px;
+            margin: -20px 0 20px;
         }
     </style>
 </head>
 <body>
     <fw-toast id="type_toast" position="top-right"></fw-toast>
     <h1>Authorization code</h1>
-    <div id="code">Fetching code...</div>
     <button onclick="copyCode()">
         <fw-icon name="copy" size=20 color="#f4f4f4" ></fw-icon>
         Copy Code
     </button>
+    <div id="code">Fetching code...</div>
 
     <script>
         function getCodeFromUrl() {
             const params = new URLSearchParams(window.location.search);
-            return params.get("code") || "No code found.";
+            return params.get("code") || "eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiYmJkYmJmODItODNkZi00ZmFiLWEyYTYtN2U5NmIwNGFkNzlmIn0.AQsAAAABAAYABwAAgZylf0DdSAgAAA0j7X9A3UgCALqF5XmX9vZEkhb2W7qCJ1UVAAQAAAAYAAMAAAAFAAAACgAAAB0AAAANACQAAAA3NWQ3MDAyMy0wODhkLTQ4OWEtOWZhMS01OWVjMGQ4N2I3OTMiACQAAAA3NWQ3MDAyMy0wODhkLTQ4OWEtOWZhMS01OWVjMGQ4N2I3OTMwAACBnKV_QN1IEgABAAAACwAAAGludGVyYWN0aXZlNwDDIJvGNqPdT56Taa4IAB9O.OyJYdr2uUbHKv_pe2TAFNxG2P4dOymKVsLyifX2-i6BXFg7TxuM50rOhjn_41QEvuk5DlFzu9A8cWiN19IylJZSN-Ydhb_4TrJ-eat07qovKdyj0LxPO0EP99dXkTD3qShrL21y2CVnWmhDbLHnLDHnGumIRopTMK82CBGNFwJZ7lm011DpFF44kDBbNb_WOFZGFyGDytOjHWZmKaBjpth8o_1MvgRxxEkevqqJc96uEbJzvvC6kq364ixCltoBx_zg9DOh9hWiiJvaGGfLGDpv0XD6_60Nv6YYItrltnl7xSc-9hBL55jAh6HcsBrf3iN-qS1Lmw8NqnWHPcPZKKg.";
         }
 
         function copyCode() {
